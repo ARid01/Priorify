@@ -6,7 +6,7 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
     const [sort, setSort] = useState("priority");
 
     //Build category list dynamically from tasks
-    const categories = ["all", ...new Set(tasks.map((t) => t,category).filter(Boolean))];
+    const categories = ["all", ...new Set(tasks.map((t) => t.category).filter(Boolean))];
 
     const visibleTasks = tasks
         .filter((t) => filter === "all" || t.category === filter)

@@ -218,10 +218,10 @@ input:focus, select:focus, textarea:focus {
   padding: 2px 8px;
   border-radius: 6px;
 }
-.badge-high     { background: #fcebeb; color: #791f1f; }
-.badge-medium   { background: #faeeda; color: #633806; }
-.badge-low      { background: #eaf3de; color: #27500a; }
-.badge-done     { background: #e1f5ee; color: #085041; }
+.badge-High     { background: #fcebeb; color: #791f1f; }
+.badge-Medium   { background: #faeeda; color: #633806; }
+.badge-Low      { background: #eaf3de; color: #27500a; }
+.badge-Done     { background: #e1f5ee; color: #085041; }
 
 /* Empty / section labels */
 .empty-state {

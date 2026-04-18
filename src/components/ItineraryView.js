@@ -12,9 +12,9 @@ function buildItinerary(tasks) {
         const daysLeft = task.dueDate
             ? (new Date(task.dueDate) - today) / (1000 * 60 * 60 * 24)
             : 999;
-        const priorityScore = { high: 3, medium: 2, low: 1 }[task.priority] || 1;
+        const priorityScore = { High: 3, Medium: 2, Low: 1 }[task.priority] || 1;
         const urgencyScore = Math.max(0, 10 - daysLeft);
-        return {...task, score: prioritySCore * 2 + urgencyScore};
+        return {...task, score: priorityScore * 2 + urgencyScore};
     });
 
     scored.sort((a, b) => b.score - a.score);
