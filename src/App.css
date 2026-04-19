@@ -33,6 +33,8 @@
   --badge-done-bg:   rgba(79,110,247,0.15);
   --badge-done-text: #8aa4f8;
 
+  --upcoming:        #f0c060;
+
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
@@ -76,6 +78,8 @@ body {
   background: var(--bg-raised);
   transform: translateY(-2px);
 }
+.task-card-overdue:hover  { border-left-color: var(--danger)   !important; }
+.task-card-upcoming:hover { border-left-color: var(--upcoming) !important; }
 
 /* ── Buttons ─────────────────────────────────── */
 .btn {
@@ -178,6 +182,8 @@ select option {
 .tab-high:hover { background: var(--badge-high-bg-muted); }
 .tab-medium:hover { background: var(--badge-med-bg-muted); }
 .tab-low:hover { background: var(--badge-low-bg-muted); }
+.tab-overdue-filter:hover {background: var(--badge-high-bg-muted);}
+.tab-upcoming-filter:hover { background: var(--badge-med-bg-muted); }
 
 .tab.active {
   background: var(--bg-card);
@@ -188,10 +194,14 @@ select option {
 .tab.active-high { background: var(--badge-high-bg); color: var(--badge-high-text); border-color: var(--badge-high-text);}
 .tab.active-medium { background: var(--badge-med-bg); color: var(--badge-med-text); border-color: var(--badge-med-text);}
 .tab.active-low { background: var(--badge-low-bg); color: var(--badge-low-text); border-color: var(--badge-low-text);}
+.tab.active-overdue  { background: var(--badge-high-bg); color: var(--badge-high-text);   border-color: var(--badge-high-text); }
+.tab.active-upcoming { background: var(--badge-med-bg);  color: var(--upcoming); border-color: var(--badge-med-text); }
 
 .tab-high {color: var(--badge-high-text);}
 .tab-medium {color: var(--badge-med-text);}
 .tab-low {color: var(--badge-low-text);}
+.tab-overdue-filter  { color: var(--danger);   }
+.tab-upcoming-filter { color: var(--upcoming); }
 
 
 /* ── TaskList controls ───────────────────────── */
@@ -389,4 +399,96 @@ select option {
   .form-grid { grid-template-columns: 1fr; }
   .form-full { grid-column: 1; }
   .task-actions { flex-direction: column; }
+}
+
+.app-body {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  position: relative;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.summary-panel {
+  width: 200px;
+  min-width: 200px;
+  background: var(--bg-card);
+  border: 0.5px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: sticky;
+  top: 1rem;
+  align-self: flex-start;
+}
+
+.summary-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.summary-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.summary-divider {
+  height: 0.5px;
+  background: var(--border-default);
+  margin: 4px 0;
+}
+
+.summary-high     {color: var(--badge-high-text)  !important;}
+.summary-medium   {color: var(--badge-med-text)   !important;}
+.summary-low      {color: var(--badge-low-text)   !important;}
+.summary-overdue  {color: var(--danger)           !important;}
+.summary-upcoming {color: var(--upcoming)         !important;}
+
+.btn-clear {
+  width: 100%;
+  margin-top: 4px;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* ── Upcoming tasks ──────────────────────────── */
+.task-card-upcoming {
+  border-left: 3px solid var(--upcoming);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+ 
+.upcoming { color: var(--upcoming); }
+ 
+/* ── Overdue tasks ───────────────────────────── */
+.task-card-overdue {
+  border-left: 3px solid var(--danger);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+ 
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 700px) {
+  .app-body { flex-direction: column; }
+  .summary-panel { width: 100%; min-width: unset; position: static; }
 }

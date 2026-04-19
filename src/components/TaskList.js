@@ -1,27 +1,50 @@
 import { useState } from "react";
 import TaskCard from "./TaskCard";
 
-const PRIORITIES = ['high', 'medium', 'low'];
+const PRIORITIES = ['all', 'high', 'medium', 'low'];
 const priorityColors = {high: 'tab-high', medium: 'tab-medium', low: 'tab-low'};
-const priorityClasses = {high: 'active-high', medium: 'active-medium', low: 'active-low'};
+const priorityActives = {high: 'active-high', medium: 'active-medium', low: 'active-low'};
 
 export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
     const [filter, setFilter] = useState("all");
     const [sort, setSort] = useState("priority");
 
-    //Build category list dynamically from tasks
-    const categories = ["all", ...new Set(tasks.map((t) => t.category).filter(Boolean))];
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+
+    const parseDate = (str) => {
+        const [year, month, day] = str.split("-").map(Number);
+        return new Date(year, month - 1, day);
+    };
+
+    const isOverdue = (t) => {
+        if (!t.dueDate || t.completed) return false;
+        return parseDate(t.dueDate) < now;
+    };
+
+    const isUpcoming = (t) => {
+        if (!t.dueDate || t.completed) return false;
+        return parseDate(t.dueDate).getTime() === now.getTime();
+    };
+
+    const userCategories = [...new Set(tasks.map((t) => t.category).filter(Boolean))];
 
     const visibleTasks = tasks
-        .filter((t) => filter === "all" || t.category === filter || t.priority === filter)
+        .filter((t) => {
+            if (filter === "all")      return true;
+            if (filter === "overdue")  return isOverdue(t);
+            if (filter === "upcoming") return isUpcoming(t);
+            if (PRIORITIES.includes(filter)) return t.priority.toLowerCase() === filter;
+            return t.category === filter;
+        })
         .sort((a, b) => {
             if (sort === "priority-htl") {
                 const order = {high: 0, medium: 1, low: 2};
-                return order[a.priority] - order[b.priority];
+                return (order[a.priority.toLowerCase()] ?? 3) - (order[b.priority.toLowerCase()] ?? 3);
             }
             else if (sort === "priority-lth") {
                 const order = {high: 2, medium: 1, low: 0};
-                return order[a.priority] - order[b.priority];
+                return (order[a.priority.toLowerCase()] ?? 3) - (order[b.priority.toLowerCase()] ?? 3);
             }
             else if (sort === "dueDate") {
                 return (a.dueDate || "9999") < (b.dueDate || "9999") ? -1 : 1;
@@ -46,24 +69,38 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
         <div>
             <div className="list-controls">
                 <div className="tab-group">
-                    {categories.map((cat) => (
+                    {PRIORITIES.map((p) => (
+                        <button
+                            key={p}
+                            className={`tab ${priorityColors[p] || ""} ${filter === p ? (priorityActives[p] || "active") : ""}`}
+                            onClick={() => setFilter(p)}
+                        >
+                        {p.charAt(0).toUpperCase() + p.slice(1)}
+                        </button>
+                    ))}
+
+                    {userCategories.map((cat) => (
                         <button
                             key={cat}
                             className={`tab ${filter === cat ? "active" : ""}`}
                             onClick={() => setFilter(cat)}
                         >
-                            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                        {cat}
                         </button>
                     ))}
-                    {PRIORITIES.map((p) => (
-                        <button
-                            key={p}
-                            className={`tab ${priorityColors[p] || "" } ${filter === p ? (priorityClasses[p] || "active") : ""}`}
-                            onClick={() => setFilter(p)}
-                        >
-                            {p.charAt(0).toUpperCase() + p.slice(1)}
-                        </button>
-                    ))}
+
+                    <button
+                        className={`tab tab-overdue-filter ${filter === "overdue" ? "active-overdue" : ""}`}
+                        onClick={() => setFilter("overdue")}
+                    >
+                        Overdue
+                    </button>
+                    <button
+                        className={`tab tab-upcoming-filter ${filter === "upcoming" ? "active-upcoming" : ""}`}
+                        onClick={() => setFilter("upcoming")}
+                    >
+                        Upcoming
+                    </button>
                 </div>
 
                 <div className="sort-control">

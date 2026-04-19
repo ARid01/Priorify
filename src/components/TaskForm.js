@@ -1,3 +1,5 @@
+import "react-datepicker/dist/react-datepicker.css"
+import "../datepicker-overrides.css";
 import {useState} from "react";
 
 const PRIORITIES = ["high", "medium", "low"];

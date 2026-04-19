@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import ItineraryView from "./components/ItineraryView";
+import SummaryPanel from "./components/SummaryPanel";
 import './App.css';
 
 const SAMPLE_TASKS = [
@@ -87,6 +88,13 @@ export default function App() {
     setShowForm(false);
   };
 
+  const handleClearStorage = () => {
+    if (window.confirm("Clear all data?")) {
+      localStorage.removeItem("priorify_tasks");
+      setTasks(SAMPLE_TASKS); 
+    }
+  }
+
   const remaining = tasks.filter((t) => !t.completed).length;
 
   return (
@@ -131,18 +139,24 @@ export default function App() {
         </button>
       </div>
 
-      {view === "tasks" ? (
-        <TaskList
-          tasks={tasks}
-          onComplete={handleComplete}
-          onDelete={handleDelete}
-          onEdit={handleEdit}
-        />
-      ) : (
-        <div className="card">
-          <ItineraryView tasks={tasks} />
+      <div className="app-body">
+        <SummaryPanel tasks={tasks} onClearStorage={handleClearStorage} />
+
+        <div className="app-main">
+            {view === "tasks" ? (
+              <TaskList
+                tasks={tasks}
+                onComplete={handleComplete}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+              />
+            ) : (
+              <div className="card">
+                <ItineraryView tasks={tasks} />
+              </div>
+            )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
