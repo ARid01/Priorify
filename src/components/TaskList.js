@@ -11,14 +11,27 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
     const visibleTasks = tasks
         .filter((t) => filter === "all" || t.category === filter)
         .sort((a, b) => {
-            if (sort === "priority") {
+            if (sort === "priority-htl") {
                 const order = {high: 0, medium: 1, low: 2};
                 return order[a.priority] - order[b.priority];
             }
-            if (sort === "dueDate") {
+            else if (sort === "priority-lth") {
+                const order = {high: 2, medium: 1, low: 0};
+                return order[a.priority] - order[b.priority];
+            }
+            else if (sort === "dueDate") {
                 return (a.dueDate || "9999") < (b.dueDate || "9999") ? -1 : 1;
             }
-            return a.title.localeCompare(b.title);
+            else if (sort === "estTime-asc") {
+                return a.estimatedTime - b.estimatedTime;
+            }
+            else if (sort === "estTime-desc") {
+                return b.estimatedTime - a.estimatedTime;
+            }
+            else {
+                //Fallback
+                return a.title.localeCompare(b.title);
+            }
         });
     
     const activeTasks = visibleTasks.filter((t) => !t.completed);
@@ -42,9 +55,11 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
                 <div className="sort-control">
                     <label>Sort by</label>
                     <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                        <option value="priority">Priority</option>
+                        <option value="priority-htl">Priority (High-&gt;Low)</option>
+                        <option value="priority-lth">Priority (Low-&gt;High)</option>
                         <option value="dueDate">Due Date</option>
-                        <option value="title">Title</option>
+                        <option value="estTime-asc">Est. Time (Asc.)</option>
+                        <option value="estTime-desc">Est. Time (Desc.)</option>
                     </select>
                 </div>
             </div>

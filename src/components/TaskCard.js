@@ -5,11 +5,9 @@ export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
     return (
         <div className={`card task-card ${task.completed ? "task-completed" : ""} ${isOverdue ? "task-overdue" : ""}`}>
             <div className="task-row">
-                <input
-                    type="checkbox"
-                    className="task-checkbox"
-                    checked={task.completed}
-                    onChange={() => onComplete(task.id)}
+                <div
+                    className={`custom-checkbox ${task.completed ? "checked" : ""}`}
+                    onClick={() => onComplete(task.id)}
                 />
 
                 <div className="task-body">
