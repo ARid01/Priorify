@@ -1,6 +1,10 @@
 import { useState } from "react";
 import TaskCard from "./TaskCard";
 
+const PRIORITIES = ['high', 'medium', 'low'];
+const priorityColors = {high: 'tab-high', medium: 'tab-medium', low: 'tab-low'};
+const priorityClasses = {high: 'active-high', medium: 'active-medium', low: 'active-low'};
+
 export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
     const [filter, setFilter] = useState("all");
     const [sort, setSort] = useState("priority");
@@ -9,7 +13,7 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
     const categories = ["all", ...new Set(tasks.map((t) => t.category).filter(Boolean))];
 
     const visibleTasks = tasks
-        .filter((t) => filter === "all" || t.category === filter)
+        .filter((t) => filter === "all" || t.category === filter || t.priority === filter)
         .sort((a, b) => {
             if (sort === "priority-htl") {
                 const order = {high: 0, medium: 1, low: 2};
@@ -29,8 +33,9 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
                 return b.estimatedTime - a.estimatedTime;
             }
             else {
-                //Fallback
-                return a.title.localeCompare(b.title);
+                //Fallback (default to high priority to low priority)
+                const order = {high: 0, medium: 1, low: 2};
+                return order[a.priority] - order[b.priority];
             }
         });
     
@@ -48,6 +53,15 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
                             onClick={() => setFilter(cat)}
                         >
                             {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                        </button>
+                    ))}
+                    {PRIORITIES.map((p) => (
+                        <button
+                            key={p}
+                            className={`tab ${priorityColors[p] || "" } ${filter === p ? (priorityClasses[p] || "active") : ""}`}
+                            onClick={() => setFilter(p)}
+                        >
+                            {p.charAt(0).toUpperCase() + p.slice(1)}
                         </button>
                     ))}
                 </div>

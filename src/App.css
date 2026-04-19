@@ -22,10 +22,13 @@
   --danger-border:  rgba(240,112,112,0.3);
 
   --badge-high-bg:   rgba(240,112,112,0.15);
+  --badge-high-bg-muted: rgba(240,122,122, 0.075);
   --badge-high-text: #f09090;
   --badge-med-bg:    rgba(250,199,117,0.15);
+  --badge-med-bg-muted: rgba(250,199,117, 0.075);
   --badge-med-text:  #f0c060;
   --badge-low-bg:    rgba(100,200,120,0.15);
+  --badge-low-bg-muted: rgba(100,200,120, 0.075);
   --badge-low-text:  #70c880;
   --badge-done-bg:   rgba(79,110,247,0.15);
   --badge-done-text: #8aa4f8;
@@ -172,11 +175,24 @@ select option {
   transition: background 0.15s;
 }
 .tab:hover { background: rgba(255,255,255,0.05); }
+.tab-high:hover { background: var(--badge-high-bg-muted); }
+.tab-medium:hover { background: var(--badge-med-bg-muted); }
+.tab-low:hover { background: var(--badge-low-bg-muted); }
+
 .tab.active {
   background: var(--bg-card);
   color: var(--text-primary);
   border: 0.5px solid var(--border-default);
 }
+
+.tab.active-high { background: var(--badge-high-bg); color: var(--badge-high-text); border-color: var(--badge-high-text);}
+.tab.active-medium { background: var(--badge-med-bg); color: var(--badge-med-text); border-color: var(--badge-med-text);}
+.tab.active-low { background: var(--badge-low-bg); color: var(--badge-low-text); border-color: var(--badge-low-text);}
+
+.tab-high {color: var(--badge-high-text);}
+.tab-medium {color: var(--badge-med-text);}
+.tab-low {color: var(--badge-low-text);}
+
 
 /* ── TaskList controls ───────────────────────── */
 .list-controls {
