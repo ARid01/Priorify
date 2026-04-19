@@ -1,9 +1,9 @@
 export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
     const isOverdue = 
-        task.dueDate && !task.compelted && new Date(task.dueData) < new Date();
+        task.dueDate && !task.completed && new Date(task.dueData) < new Date();
     
     return (
-        <div className={`card task-card ${task.completed ? "task-completed" : ""} ${isOverdue ? "task-overdue" : ""}`}>
+        <div className={`card task-card ${task.completed ? "task-completed" : ""} ${isOverdue ? "task-card-overdue" : ""} ${isUpcoming ? "task-card-upcoming" : ""}`}>
             <div className="task-row">
                 <div
                     className={`custom-checkbox ${task.completed ? "checked" : ""}`}
@@ -21,7 +21,7 @@ export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
 
                     <div className="task-meta">
                         {task.dueDate && (
-                            <span className={isOverdue ? "overdue" : ""}> Due {task.dueDate}</span>
+                            <span className={isOverdue ? "overdue" : isUpcoming ? "upcoming" : ""}>Due {task.dueDate}</span>
                         )}
                         {task.estimatedTime && <span>{task.estimatedTime} min</span>}
                         {task.category && (

@@ -216,6 +216,11 @@ select option {
 .task-card { margin-bottom: 8px; transition: opacity 0.2s, border-color 0.15s, background 0.15s, transform 0.2s ease; }
 .task-completed { opacity: 0.4; }
 
+.task-card-overdue {
+  border-left: 3px solid var(--danger);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
 .task-row {
   display: flex;
   align-items: flex-start;
