@@ -68,13 +68,13 @@ Built to make productivity feel **effortless, clean, and actually enjoyable**.
 
 If you like this project:
 
-* Give it a ⭐ on GitHub
+* Give it a star on GitHub
 * Share it with others
 * Use it to level up your productivity
 
 ---
 
-## 🧑‍💻 Author
+## Author
 
 **Andrew Ridgely**
 
