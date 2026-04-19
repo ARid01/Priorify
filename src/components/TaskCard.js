@@ -40,7 +40,11 @@ export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
                     )}
                     <button
                         className="btn btn-sm btn-danger"
-                        onClick={() => onDelete(task.id)}
+                        onClick={() => {
+                            if (window.confirm("Delete this task?")) {
+                                onDelete(task.id);
+                            }
+                        }}
                     >
                         Delete
                     </button>
