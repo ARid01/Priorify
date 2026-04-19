@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Priorify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> A powerful and aesthetic todo list application with **priorities**, **categories**, and **daily itineraries**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## App Overview
 
-### `npm start`
+Welcome to Priorify!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This project is designed to help you:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* Stay organized
+* Focus on what matters
+* Plan your day efficiently
 
-### `npm test`
+With built-in support for priorities, categories, and structured daily itineraries, you can turn chaos into clarity.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Main Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Priority System
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Assign priority levels (High, Medium, Low)
+* Quickly identify what needs immediate attention
+* Color-coded for instant recognition
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Categories
 
-### `npm run eject`
+* Organize tasks into custom categories
+* Examples: Work, School, Personal, Fitness
+* Filter tasks by category
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Daily Itineraries
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Plan your day step-by-step and generate the most efficient schedule
+* Structure tasks into time-based schedules
+* Visualize your daily workflow
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 4. Productivity Boosters
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* Clean and intuitive UI
+* Fast task creation and editing
+* Minimal distractions, maximum focus
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Tech Stack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* **Frontend:** React.js, HTML, CSS, JS
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
+This project is licensed under the MIT License.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Inspiration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Built to make productivity feel **effortless, clean, and actually enjoyable**.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Support
 
-### Deployment
+If you like this project:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* Give it a ⭐ on GitHub
+* Share it with others
+* Use it to level up your productivity
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🧑‍💻 Author
+
+**Andrew Ridgely**
+
+---

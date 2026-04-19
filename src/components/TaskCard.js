@@ -17,9 +17,7 @@ export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
                         <span className={`task-title ${task.completed ? "strikethrough" : ""}`}>
                             {task.title}
                         </span>
-                        <span className={`badge badge-${task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}`}>
-                            {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}
-                        </span>
+                        <span className={`badge badge-${task.priority.toLowerCase()}`}>{task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}</span>
                         {task.completed && <span className="badge badge-Done">Done</span>}
                     </div>
 
