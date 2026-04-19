@@ -1,44 +1,44 @@
-# Priorify
+# <span style="color:#4f8cff;">Priorify</span>
 
-> A powerful and aesthetic todo list application with **priorities**, **categories**, and **daily itineraries**.
+> <span style="color:#6c757d;">A powerful and aesthetic todo list application with</span> <b style="color:#ff6b6b;">priorities</b>, <b style="color:#4dabf7;">categories</b>, and <b style="color:#51cf66;">daily itineraries</b>.
 
 ---
 
-## App Overview
+## <span style="color:#4f8cff;">App Overview</span>
 
-Welcome to Priorify!
+Welcome to <b>Priorify</b>!
 
 This project is designed to help you:
 
-* Stay organized
-* Focus on what matters
-* Plan your day efficiently
+* <span style="color:#51cf66;">Stay organized</span>
+* <span style="color:#fcc419;">Focus on what matters</span>
+* <span style="color:#4dabf7;">Plan your day efficiently</span>
 
-With built-in support for priorities, categories, and structured daily itineraries, you can turn chaos into clarity.
+With built-in support for <b style="color:#ff6b6b;">priorities</b>, <b style="color:#4dabf7;">categories</b>, and structured <b style="color:#51cf66;">daily itineraries</b>, you can turn chaos into clarity.
 
 ---
 
-## Main Features
+## <span style="color:#4f8cff;">Main Features</span>
 
-### 1. Priority System
+### <span style="color:#ff6b6b;">1. Priority System</span>
 
-* Assign priority levels (High, Medium, Low)
+* Assign priority levels (<span style="color:#ff6b6b;">High</span>, <span style="color:#fcc419;">Medium</span>, <span style="color:#51cf66;">Low</span>)
 * Quickly identify what needs immediate attention
 * Color-coded for instant recognition
 
-### 2. Categories
+### <span style="color:#4dabf7;">2. Categories</span>
 
 * Organize tasks into custom categories
 * Examples: Work, School, Personal, Fitness
 * Filter tasks by category
 
-### 3. Daily Itineraries
+### <span style="color:#51cf66;">3. Daily Itineraries</span>
 
 * Plan your day step-by-step and generate the most efficient schedule
 * Structure tasks into time-based schedules
 * Visualize your daily workflow
 
-### 4. Productivity Boosters
+### <span style="color:#845ef7;">4. Productivity Boosters</span>
 
 * Clean and intuitive UI
 * Fast task creation and editing
@@ -46,35 +46,35 @@ With built-in support for priorities, categories, and structured daily itinerari
 
 ---
 
-## Tech Stack
+## <span style="color:#4f8cff;">Tech Stack</span>
 
 * **Frontend:** React.js, HTML, CSS, JS
 
 ---
 
-## License
+## <span style="color:#4f8cff;">License</span>
 
 This project is licensed under the MIT License.
 
 ---
 
-## Inspiration
+## <span style="color:#4f8cff;">Inspiration</span>
 
-Built to make productivity feel **effortless, clean, and actually enjoyable**.
+Built to make productivity feel <b style="color:#51cf66;">effortless</b>, <b style="color:#4dabf7;">clean</b>, and <b style="color:#ff6b6b;">actually enjoyable</b>.
 
 ---
 
-## Support
+## <span style="color:#4f8cff;">Support</span>
 
 If you like this project:
 
-* Give it a star on GitHub
+* Give it a ⭐ on GitHub
 * Share it with others
 * Use it to level up your productivity
 
 ---
 
-## Author
+## <span style="color:#4f8cff;">Author</span>
 
 **Andrew Ridgely**
 
