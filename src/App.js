@@ -152,7 +152,7 @@ export default function App() {
               />
             ) : (
               <div className="card">
-                <ItineraryView tasks={tasks} />
+                <ItineraryView tasks={tasks} onComplete={handleComplete} />
               </div>
             )}
         </div>

@@ -79,16 +79,6 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
                         </button>
                     ))}
 
-                    {userCategories.map((cat) => (
-                        <button
-                            key={cat}
-                            className={`tab ${filter === cat ? "active" : ""}`}
-                            onClick={() => setFilter(cat)}
-                        >
-                        {cat}
-                        </button>
-                    ))}
-
                     <button
                         className={`tab tab-overdue-filter ${filter === "overdue" ? "active-overdue" : ""}`}
                         onClick={() => setFilter("overdue")}
@@ -101,6 +91,16 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
                     >
                         Upcoming
                     </button>
+
+                    {userCategories.map((cat) => (
+                        <button
+                            key={cat}
+                            className={`tab ${filter === cat ? "active" : ""}`}
+                            onClick={() => setFilter(cat)}
+                        >
+                        {cat}
+                        </button>
+                    ))}
                 </div>
 
                 <div className="sort-control">

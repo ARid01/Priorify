@@ -51,7 +51,7 @@ function buildItinerary(tasks) {
     return slots;
 }
 
-export default function ItineraryView({ tasks }) {
+export default function ItineraryView({ tasks, onComplete }) {
     const slots = buildItinerary(tasks);
     const totalMins = slots.reduce((sum, t) => sum + Number(t.estimatedTime), 0);
 
@@ -78,7 +78,11 @@ export default function ItineraryView({ tasks }) {
 
             <div className="itinerary-list">
                 {slots.map((task) => (
-                    <div key={task.id} className="itinerary-slot">
+                    <div key={task.id} className={`itinerary-slot ${task.completed ? "itinerary-slot-done" : ""}`}>
+                        <div
+                            className={`custom-checkbox ${task.completed ? "checked" : ""}`}
+                            onClick={() => onComplete(task.id)}
+                        />
                         <div className="time-block">
                             <span className="time-start">{task.startLabel}</span>
                             <span className="time-end">{task.endLabel}</span>
