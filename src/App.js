@@ -3,6 +3,7 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import ItineraryView from "./components/ItineraryView";
 import SummaryPanel from "./components/SummaryPanel";
+import { buildItinerary } from "./utils/itinerary";
 import './App.css';
 
 const SAMPLE_TASKS = [
@@ -38,11 +39,26 @@ export default function App() {
     }
   });
 
+  const [itineraryTasks, setItineraryTasks] = useState(() => {
+    try {
+      const saved = localStorage.getItem("priorify_itinerary");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
   const [view, setView] = useState("tasks");
   const [showForm, setShowForm] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
 
   //Auto-save to localStorage whenever theres a change
+  useEffect(() => {
+    try {
+      localStorage.setItem("priorify_itinerary", JSON.stringify(itineraryTasks));
+    } catch {}
+  }, [itineraryTasks]);
+
   useEffect(() => {
     try {
       localStorage.setItem("priorify_tasks", JSON.stringify(tasks));
@@ -94,6 +110,18 @@ export default function App() {
       setTasks(SAMPLE_TASKS); 
     }
   }
+
+  const handleBuildItinerary = () => {
+    const slots = buildItinerary(tasks);
+    setItineraryTasks(slots);
+  };
+
+  const handleItineraryComplete = (id) => {
+    handleComplete(id);
+    setItineraryTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
+    );
+  };
 
   const remaining = tasks.filter((t) => !t.completed).length;
 
@@ -151,8 +179,8 @@ export default function App() {
                 onEdit={handleEdit}
               />
             ) : (
-              <div className="card">
-                <ItineraryView tasks={tasks} onComplete={handleComplete} />
+              <div id="itinerary-view-tab" className="card">
+                <ItineraryView tasks={itineraryTasks} onComplete={handleItineraryComplete} onBuild={handleBuildItinerary} hasItinerary={itineraryTasks.length > 0} />
               </div>
             )}
         </div>

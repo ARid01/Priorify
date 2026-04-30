@@ -406,6 +406,11 @@ select option {
   .task-actions { flex-direction: column; }
 }
 
+#itinerary-view-tab:hover {
+  transform: translateY(-0.5);
+  background: var(--bg-card);
+}
+
 .app-body {
   display: flex;
   gap: 1.5rem;

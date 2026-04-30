@@ -4,69 +4,38 @@
 // 3. Sort by score descending
 // 4. Greedily fill an 8-hour day (480 mins), skip tasks that dont fit
 
-function buildItinerary(tasks) {
-    const today = new Date();
-    const activeTasks = tasks.filter((t) => !t.completed);
+export default function ItineraryView({ tasks, onComplete, onBuild, hasItinerary }) {
+    const totalMins = tasks.reduce((sum, t) => sum + Number(t.estimatedTime), 0);
 
-    const scored = activeTasks.map((task) => {
-        const daysLeft = task.dueDate
-            ? (new Date(task.dueDate) - today) / (1000 * 60 * 60 * 24)
-            : 999;
-        const priorityScore = { High: 3, Medium: 2, Low: 1 }[task.priority] || 1;
-        const urgencyScore = Math.max(0, 10 - daysLeft);
-        return {...task, score: priorityScore * 2 + urgencyScore};
-    });
-
-    scored.sort((a, b) => b.score - a.score);
-
-    let minutesLeft = 480; //8 hours
-    let currentMinute = 9 * 60; //Start at 9:00 AM
-    const slots = [];
-
-    for (const task of scored) {
-        if (task.estimatedTime <= minutesLeft) {
-            const startH = Math.floor(currentMinute / 60);
-            const startM = currentMinute % 60;
-            const endMinute = currentMinute + Number(task.estimatedTime);
-            const endH = Math.floor(endMinute / 60);
-            const endM = endMinute % 60;
-
-            const fmt = (h, m) => {
-                const period = h < 12 ? "AM" : "PM";
-                const displayH = h % 12 || 12;
-                return `${displayH}:${String(m).padStart(2, "0")} ${period}`;
-            };
-
-            slots.push({
-                ...task,
-                startLabel: fmt(startH, startM),
-                endLabel: fmt(endH, endM)
-            });
-
-            currentMinute = endMinute;
-            minutesLeft -= Number(task.estimatedTime);
-        }
+    if (tasks.length === 0 && hasItinerary) {
+        return <p className="empty-state">No active tasks to schedule.</p>;
     }
 
-    return slots;
-}
-
-export default function ItineraryView({ tasks, onComplete }) {
-    const slots = buildItinerary(tasks);
-    const totalMins = slots.reduce((sum, t) => sum + Number(t.estimatedTime), 0);
-
-    if (slots.length === 0) {
+    if (!hasItinerary) {
         return (
-            <p className="empty-state">No active tasks to schedule.</p>
+            <div style={{ textAlign: "center", padding: "2rem" }}>
+            <p style={{ color: "var(--text-secondary)", marginBottom: "1rem" }}>
+                No itinerary built yet for today.
+            </p>
+            <button className="btn btn-primary" onClick={onBuild}>
+                Build itinerary
+            </button>
+            </div>
         );
     }
 
     return (
         <div>
+            <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "1rem" }}>
+                <button className="btn" onClick={onBuild}>
+                    Rebuild
+                </button>
+            </div>
+
             <div className="stats-row">
                 <div className="stat-card">
                     <div className="stat-label">Tasks scheduled</div>
-                    <div className="stat-value">{slots.length}</div>
+                    <div className="stat-value">{tasks.length}</div>
                 </div>
                 <div className="stat-card">
                     <div className="stat-label">Total time</div>
@@ -77,7 +46,7 @@ export default function ItineraryView({ tasks, onComplete }) {
             </div>
 
             <div className="itinerary-list">
-                {slots.map((task) => (
+                {tasks.map((task) => (
                     <div key={task.id} className={`itinerary-slot ${task.completed ? "itinerary-slot-done" : ""}`}>
                         <div
                             className={`custom-checkbox ${task.completed ? "checked" : ""}`}
