@@ -1,6 +1,7 @@
 # <span style="color:#4f8cff;">Priorify</span>
 
 > <span style="color:#6c757d;">A powerful and aesthetic todo list application with</span> <b style="color:#ff6b6b;">priorities</b>, <b style="color:#4dabf7;">categories</b>, and <b style="color:#51cf66;">daily itineraries</b>.
+Try it here: [Priorify](https://ARid01.github.io/Priorify)
 
 ---
 
