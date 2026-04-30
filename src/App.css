@@ -1,5 +1,7 @@
+/* App.css */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Variables */
 :root {
   --bg-page:        #0f1117;
   --bg-card:        #1c1f2a;
@@ -41,6 +43,7 @@
   --radius-pill: 10px;
 }
 
+/* Body -> General things */
 body {
   font-family: system-ui, -apple-system, sans-serif;
   background: var(--bg-page);
@@ -48,7 +51,7 @@ body {
   min-height: 100vh;
 }
 
-/* ── Layout ─────────────────────────────────── */
+/* Layout */
 .app {
   max-width: 1100px;
   margin: 0 auto;
@@ -65,7 +68,7 @@ body {
 .app-title { font-size: 24px; font-weight: 500; color: var(--text-primary); }
 .app-subtitle { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
 
-/* ── Card ────────────────────────────────────── */
+/* Card Class */
 .card {
   background: var(--bg-card);
   border: 0.5px solid var(--border-default);
@@ -81,7 +84,7 @@ body {
 .task-card-overdue:hover  { border-left-color: var(--danger)   !important; }
 .task-card-upcoming:hover { border-left-color: var(--upcoming) !important; }
 
-/* ── Buttons ─────────────────────────────────── */
+/* Button Class */
 .btn {
   font-family: inherit;
   font-size: 13px;
@@ -108,7 +111,7 @@ body {
 .btn-danger { color: var(--danger); border-color: var(--danger-border); }
 .btn-danger:hover { background: var(--danger-bg); }
 
-/* ── Form ────────────────────────────────────── */
+/* Form Stuff */
 .form-card { margin-bottom: 1rem; }
 
 .form-grid {
@@ -147,7 +150,7 @@ select option {
   color: var(--text-primary);
 }
 
-/* ── Tabs ────────────────────────────────────── */
+/* Tabs Class */
 .view-tabs {
   display: flex;
   gap: 4px;
@@ -178,6 +181,7 @@ select option {
   font-family: inherit;
   transition: background 0.15s;
 }
+/* Different Variations for Tab Types */
 .tab:hover { background: rgba(255,255,255,0.05); }
 .tab-high:hover { background: var(--badge-high-bg-muted); }
 .tab-medium:hover { background: var(--badge-med-bg-muted); }
@@ -204,7 +208,7 @@ select option {
 .tab-upcoming-filter { color: var(--upcoming); }
 
 
-/* ── TaskList controls ───────────────────────── */
+/* Tasklist Controls */
 .list-controls {
   display: flex;
   align-items: center;
@@ -222,7 +226,7 @@ select option {
 .sort-control label { margin: 0; white-space: nowrap; }
 .sort-control select { width: auto; padding: 6px 8px; }
 
-/* ── TaskCard ────────────────────────────────── */
+/* Task Card */
 .task-card { margin-bottom: 8px; transition: opacity 0.2s, border-color 0.15s, background 0.15s, transform 0.2s ease; }
 .task-completed { opacity: 0.4; }
 
@@ -315,7 +319,7 @@ select option {
   flex-shrink: 0;
 }
 
-/* ── Badges ──────────────────────────────────── */
+/* Badges */
 .badge {
   display: inline-block;
   font-size: 11px;
@@ -334,7 +338,7 @@ select option {
 .badge-low    { background: var(--badge-low-bg);   color: var(--badge-low-text);  }
 .badge-done   { background: var(--badge-done-bg);  color: var(--badge-done-text); }
 
-/* ── Empty / section labels ──────────────────── */
+/* Empty */
 .empty-state {
   text-align: center;
   color: var(--text-muted);
@@ -348,7 +352,7 @@ select option {
   margin-bottom: 8px;
 }
 
-/* ── ItineraryView ───────────────────────────── */
+/* ItineraryView */
 .stats-row {
   display: flex;
   gap: 10px;
@@ -398,7 +402,7 @@ select option {
 .slot-category { font-size: 11px; color: var(--text-secondary); }
 .slot-duration  { font-size: 11px; color: var(--text-secondary); }
 
-/* ── Responsive ──────────────────────────────── */
+/* Responsivity */
 @media (max-width: 480px) {
   .app { padding: 1rem; }
   .form-grid { grid-template-columns: 1fr; }
@@ -406,6 +410,7 @@ select option {
   .task-actions { flex-direction: column; }
 }
 
+/* Other Extra Things */
 #itinerary-view-tab:hover {
   transform: translateY(-0.5);
   background: var(--bg-card);
@@ -423,6 +428,7 @@ select option {
   min-width: 0;
 }
 
+/* Summary Panel */
 .summary-panel {
   width: 200px;
   min-width: 200px;
@@ -483,7 +489,7 @@ select option {
   font-size: 12px;
 }
 
-/* ── Upcoming tasks ──────────────────────────── */
+/* Specific Upcoming Tasks */
 .task-card-upcoming {
   border-left: 3px solid var(--upcoming);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
@@ -491,13 +497,13 @@ select option {
  
 .upcoming { color: var(--upcoming); }
  
-/* ── Overdue tasks ───────────────────────────── */
+/* Specific Overdue Tasks */
 .task-card-overdue {
   border-left: 3px solid var(--danger);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
 }
  
-/* ── Responsive ──────────────────────────────── */
+/* Responsivity */
 @media (max-width: 700px) {
   .app-body { flex-direction: column; }
   .summary-panel { width: 100%; min-width: unset; position: static; }

@@ -1,16 +1,15 @@
-//How to schedule:
-// 1. Filter out completed tasks
-// 2. Score each task by priority (high=3, medium=2, low=1) + urgency (due date)
-// 3. Sort by score descending
-// 4. Greedily fill an 8-hour day (480 mins), skip tasks that dont fit
 
+//Definition
 export default function ItineraryView({ tasks, onComplete, onBuild, hasItinerary }) {
+    //Total time for all tasks
     const totalMins = tasks.reduce((sum, t) => sum + Number(t.estimatedTime), 0);
 
+    //Empty state for the itinerary
     if (tasks.length === 0 && hasItinerary) {
         return <p className="empty-state">No active tasks to schedule.</p>;
     }
 
+    //Allows the user to build an itinerary
     if (!hasItinerary) {
         return (
             <div style={{ textAlign: "center", padding: "2rem" }}>
@@ -24,6 +23,7 @@ export default function ItineraryView({ tasks, onComplete, onBuild, hasItinerary
         );
     }
 
+    //HTML
     return (
         <div>
             <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "1rem" }}>

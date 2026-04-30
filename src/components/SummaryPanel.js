@@ -1,24 +1,31 @@
+//Main use function
 export default function SummaryPanel({tasks, onClearStorage}) {
+    //Get reference to now as date/time
     const now = new Date();
     now.setHours(0, 0, 0, 0);
 
+    //Get active jobs (uncompleted)
     const active = tasks.filter((t) => !t.completed);
 
+    //Helper function to parse date string to a Date obj
     const parseDate = (str) => {
         const [year, month, day] = str.split("-").map(Number);
         return new Date(year, month - 1, day);
     };
 
+    //Helper function for overdue tasks
     const isOverdue = (t) => {
         if (!t.dueDate) return false;
         return parseDate(t.dueDate) < now;
     };
 
+    //Helper function for upcoming tasks
     const isUpcoming = (t) => {
         if (!t.dueDate) return false;
         return parseDate(t.dueDate).getTime() === now.getTime();
     };
 
+    //Generate stats for summary
     const stats = {
         total:    tasks.length,
         high:     active.filter((t) => t.priority.toLowerCase() === "high").length,
@@ -28,6 +35,7 @@ export default function SummaryPanel({tasks, onClearStorage}) {
         upcoming: active.filter(isUpcoming).length,
     };
 
+    //HTML
     return (
         <aside className="summary-panel">
         <div className="summary-title">Summary</div>

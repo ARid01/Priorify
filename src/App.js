@@ -6,6 +6,7 @@ import SummaryPanel from "./components/SummaryPanel";
 import { buildItinerary } from "./utils/itinerary";
 import './App.css';
 
+//Sample tasks for first visit.
 const SAMPLE_TASKS = [
   {
     id: "1",
@@ -29,7 +30,9 @@ const SAMPLE_TASKS = [
   }
 ];
 
+//Main function
 export default function App() {
+  //Set tasks from local storage if available
   const [tasks, setTasks] = useState(() => {
     try {
       const saved = localStorage.getItem("priorify_tasks");
@@ -39,6 +42,7 @@ export default function App() {
     }
   });
 
+  //Itinerary too
   const [itineraryTasks, setItineraryTasks] = useState(() => {
     try {
       const saved = localStorage.getItem("priorify_itinerary");
@@ -48,6 +52,7 @@ export default function App() {
     }
   });
 
+  //Set state variables
   const [view, setView] = useState("tasks");
   const [showForm, setShowForm] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
@@ -67,6 +72,7 @@ export default function App() {
     }
   }, [tasks]);
 
+  //Putting in a new task
   const handleAddTask = (formData) => {
     const newTask = {
       ...formData,
@@ -78,6 +84,7 @@ export default function App() {
     setShowForm(false);
   };
 
+  //Saving an edited task
   const handleSaveEdit = (formData) => {
     setTasks((prev) => 
       prev.map((t) =>
@@ -89,21 +96,25 @@ export default function App() {
     setEditingTask(null);
   };
 
+  //Completing a task
   const handleComplete = (id) => {
     setTasks((prev) => 
       prev.map((t) => (t.id === id ? {...t, completed: !t.completed} : t))
     );
   };
 
+  //Deleting a task
   const handleDelete = (id) => {
     setTasks((prev) => prev.filter((t) => t.id !== id));
   };
 
+  //Set state variables for editing
   const handleEdit = (task) => {
     setEditingTask(task);
     setShowForm(false);
   };
 
+  //Clearing local storage
   const handleClearStorage = () => {
     if (window.confirm("Clear all data?")) {
       localStorage.removeItem("priorify_tasks");
@@ -111,6 +122,7 @@ export default function App() {
     }
   }
 
+  //Building itinerary
   const handleBuildItinerary = () => {
     const slots = buildItinerary(tasks);
     setItineraryTasks(slots);
@@ -125,6 +137,7 @@ export default function App() {
 
   const remaining = tasks.filter((t) => !t.completed).length;
 
+  //HTML
   return (
     <div className="app">
       <header className="app-header">

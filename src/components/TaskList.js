@@ -1,34 +1,43 @@
 import { useState } from "react";
 import TaskCard from "./TaskCard";
 
+//Define classes for use in CSS
 const PRIORITIES = ['all', 'high', 'medium', 'low'];
 const priorityColors = {high: 'tab-high', medium: 'tab-medium', low: 'tab-low'};
 const priorityActives = {high: 'active-high', medium: 'active-medium', low: 'active-low'};
 
+//Main use function
 export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
+    //Define filter and sorting
     const [filter, setFilter] = useState("all");
     const [sort, setSort] = useState("priority");
 
+    //Get reference to today's date/time
     const now = new Date();
     now.setHours(0, 0, 0, 0);
 
+    //Helper function to turn a string into a Date obj
     const parseDate = (str) => {
         const [year, month, day] = str.split("-").map(Number);
         return new Date(year, month - 1, day);
     };
 
+    //Helper function to determine if a due date has passed
     const isOverdue = (t) => {
         if (!t.dueDate || t.completed) return false;
         return parseDate(t.dueDate) < now;
     };
 
+    //Helper function to determine if a due date is today
     const isUpcoming = (t) => {
         if (!t.dueDate || t.completed) return false;
         return parseDate(t.dueDate).getTime() === now.getTime();
     };
 
+    //Get list of categories from user tasks
     const userCategories = [...new Set(tasks.map((t) => t.category).filter(Boolean))];
 
+    //Get all visible tasks based on filter and category
     const visibleTasks = tasks
         .filter((t) => {
             if (filter === "all")      return true;
@@ -37,6 +46,8 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
             if (PRIORITIES.includes(filter)) return t.priority.toLowerCase() === filter;
             return t.category === filter;
         })
+        //Sort based on dropdown menu
+        //Comparison functions defined below
         .sort((a, b) => {
             if (sort === "priority-htl") {
                 const order = {high: 0, medium: 1, low: 2};
@@ -62,9 +73,11 @@ export default function TaskList({ tasks, onComplete, onEdit, onDelete }) {
             }
         });
     
+    //Get active tasks and completed tasks based on completed field
     const activeTasks = visibleTasks.filter((t) => !t.completed);
     const completedTasks = visibleTasks.filter((t) => t.completed);
 
+    //HTML
     return (
         <div>
             <div className="list-controls">

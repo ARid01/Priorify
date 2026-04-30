@@ -2,8 +2,10 @@ import "react-datepicker/dist/react-datepicker.css"
 import "../datepicker-overrides.css";
 import {useState} from "react";
 
+//Priorities definition
 const PRIORITIES = ["high", "medium", "low"];
 
+//Blank input form
 const BLANK = {
     title: "",
     desc: "",
@@ -13,18 +15,22 @@ const BLANK = {
     category: ""
 }
 
+//Main use function
 export default function TaskForm({ onSave, onCancel, editing }) {
     const [form, setForm] = useState(editing || BLANK);
 
+    //Helper function
     const handleChange = (key) => (e) => {
         setForm((prev) => ({...prev, [key]: e.target.value}));
     };
 
+    //Submit form, trim title, save
     const handleSubmit = () => {
         if (!form.title.trim()) return;
         onSave(form);
     };
 
+    //HTML
     return (
         <div className="card form-card">
             <div className="form-grid">

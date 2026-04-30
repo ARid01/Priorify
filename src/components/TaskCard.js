@@ -1,23 +1,30 @@
+//Main use function
 export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
+    //Get reference to now as date/time
     const now = new Date();
     now.setHours(0, 0, 0, 0);
 
+    //Get reference to tomorrow as date/time
     const tomorrow = new Date(now);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
+    //Get due date from task and parse to Date obj
     const dueDate = task.dueDate ? (() => {
     const [year, month, day] = task.dueDate.split("-").map(Number);
     return new Date(year, month - 1, day);
     })() : null;
 
+    //Check if overdue or upcoming
     const isOverdue  = dueDate && !task.completed && dueDate < now;
     const isUpcoming = dueDate && !task.completed && dueDate.getTime() === now.getTime();
 
+    //Create card and add classes for different tags
     let cardClass = `card task-card`;
     if (task.completed) cardClass += " task-completed";
     if (isOverdue)      cardClass += " task-card-overdue";
     if (isUpcoming)     cardClass += " task-card-upcoming";
     
+    //HTML
     return (
         <div className={cardClass}>
             <div className="task-row">
