@@ -6,29 +6,41 @@ import SummaryPanel from "./components/SummaryPanel";
 import { buildItinerary } from "./utils/itinerary";
 import './App.css';
 
-//Sample tasks for first visit.
-const SAMPLE_TASKS = [
-  {
-    id: "1",
-    title: "Submit project report",
-    desc: "Finalize and submit the project report to the professor.",
-    priority: "High",
-    dueDate: "2026-04-18",
-    estimatedTime: 90,
-    category: "School",
-    completed: false
-  },
-  {
-    id: "2",
-    title: "Grocery shopping",
-    desc: "Buy groceries for the week.",
-    priority: "Medium",
-    dueDate: "2026-04-20",
-    estimatedTime: 60,
-    category: "Personal",
-    completed: false
+//Sample tasks for first visit or new slate, tells the user how to use it (kinda)
+const getSampleTasks = () => {
+  const today = new Date();
+  const formatDate = (date) =>
+    `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+
+  const dayOffset = (days) => {
+    const d = new Date(today);
+    d.setDate(d.getDate() + days);
+    return formatDate(d);
   }
-];
+
+  return [
+    {
+      id: "1",
+      title: "Create a task to start. . .",
+      desc: "Create your first task to get started!",
+      priority: "High",
+      dueDate: formatDate(today),
+      estimatedTime: 5,
+      category: "Getting started",
+      completed: false,
+    },
+    {
+      id: "2",
+      title: "Go to daily itinerary to plan!",
+      desc: "Head to the daily itinerary to start planning your day.",
+      priority: "None",
+      dueDate: dayOffset(2),
+      estimatedTime: 10,
+      category: "Getting started",
+      completed: false,
+    },
+  ]
+};
 
 //Main function
 export default function App() {
@@ -36,9 +48,9 @@ export default function App() {
   const [tasks, setTasks] = useState(() => {
     try {
       const saved = localStorage.getItem("priorify_tasks");
-      return saved ? JSON.parse(saved) : SAMPLE_TASKS;
+      return saved ? JSON.parse(saved) : getSampleTasks();
     } catch {
-      return SAMPLE_TASKS;
+      return getSampleTasks();
     }
   });
 
@@ -116,10 +128,8 @@ export default function App() {
 
   //Clearing local storage
   const handleClearStorage = () => {
-    if (window.confirm("Clear all data?")) {
-      localStorage.removeItem("priorify_tasks");
-      setTasks(SAMPLE_TASKS); 
-    }
+    localStorage.removeItem("priorify_tasks");
+      setTasks(getSampleTasks()); 
   }
 
   //Building itinerary

@@ -43,6 +43,10 @@ export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
                     </span>
                     {task.completed && <span className="badge badge-done">Done</span>}
                 </div>
+
+                {task.desc && (
+                    <p className="task-desc">{task.desc}</p>
+                )}
         
                 <div className="task-meta">
                     {task.dueDate && (

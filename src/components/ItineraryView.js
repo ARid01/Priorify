@@ -58,6 +58,7 @@ export default function ItineraryView({ tasks, onComplete, onBuild, hasItinerary
                         </div>
                         <div className="slot-body">
                             <div className="slot-title">{task.title}</div>
+                            <div className="task-desc">{task.desc}</div>
                             <div className="slot-meta">
                                 <span className={`badge badge-${task.priority.toLowerCase()}`}>
                                     {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}

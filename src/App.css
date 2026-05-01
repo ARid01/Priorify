@@ -235,6 +235,21 @@ select option {
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
 }
 
+.task-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 2px 0 6px 0;
+  line-height: 1.4;
+
+  /* Clip to single line */
+  white-space: nowrap;
+  overflow: hidden;
+
+  /* Horizontal fade */
+  mask-image: linear-gradient(to right, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+}
+
 .task-row {
   display: flex;
   align-items: flex-start;
@@ -337,6 +352,7 @@ select option {
 .badge-medium { background: var(--badge-med-bg);   color: var(--badge-med-text);  }
 .badge-low    { background: var(--badge-low-bg);   color: var(--badge-low-text);  }
 .badge-done   { background: var(--badge-done-bg);  color: var(--badge-done-text); }
+.badge-none   { background: var(--bg-raised);      color: var(--text-secondary);  }
 
 /* Empty */
 .empty-state {
