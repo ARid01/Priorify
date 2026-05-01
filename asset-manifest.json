@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Priorify/static/css/main.6e2d0e7d.css",
-    "main.js": "/Priorify/static/js/main.0fa270b8.js",
+    "main.css": "/Priorify/static/css/main.60375faf.css",
+    "main.js": "/Priorify/static/js/main.919a106f.js",
     "static/js/453.2559320f.chunk.js": "/Priorify/static/js/453.2559320f.chunk.js",
     "index.html": "/Priorify/index.html",
-    "main.6e2d0e7d.css.map": "/Priorify/static/css/main.6e2d0e7d.css.map",
-    "main.0fa270b8.js.map": "/Priorify/static/js/main.0fa270b8.js.map",
+    "main.60375faf.css.map": "/Priorify/static/css/main.60375faf.css.map",
+    "main.919a106f.js.map": "/Priorify/static/js/main.919a106f.js.map",
     "453.2559320f.chunk.js.map": "/Priorify/static/js/453.2559320f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6e2d0e7d.css",
-    "static/js/main.0fa270b8.js"
+    "static/css/main.60375faf.css",
+    "static/js/main.919a106f.js"
   ]
 }
