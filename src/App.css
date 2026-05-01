@@ -240,12 +240,11 @@ select option {
   color: var(--text-muted);
   margin: 2px 0 6px 0;
   line-height: 1.4;
-
-  /* Clip to single line */
   white-space: nowrap;
   overflow: hidden;
+}
 
-  /* Horizontal fade */
+.task-desc.overflows {
   mask-image: linear-gradient(to right, black 70%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
 }
@@ -291,7 +290,7 @@ select option {
   display: block;
 }
 
-.task-body { flex: 1; min-width: 0; }
+.task-body { overflow: hidden; flex: 1; min-width: 0; }
 
 .task-title-row {
   display: flex;
@@ -406,7 +405,7 @@ select option {
 .time-start { font-size: 12px; font-weight: 500; color: var(--text-secondary); }
 .time-end   { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
 
-.slot-body { flex: 1; }
+.slot-body { overflow: hidden; min-width: 0; flex: 1; }
 .slot-title { font-weight: 500; font-size: 14px; margin-bottom: 4px; color: var(--text-primary); }
 
 .slot-meta {

@@ -1,3 +1,21 @@
+import { useRef, useState, useEffect } from "react";
+
+//Subcomponent to handle overflow detection for descriptions
+function ItineraryDesc({ desc }) {
+    const ref = useRef(null);
+    const [overflows, setOverflows] = useState(false);
+
+    useEffect(() => {
+        if (ref.current)
+            setOverflows(ref.current.scrollWidth > ref.current.clientWidth);
+    }, [desc]);
+
+    return (
+        <div ref={ref} className={`task-desc ${overflows ? "overflows" : ""}`}>
+            {desc}
+        </div>
+    );
+}
 
 //Definition
 export default function ItineraryView({ tasks, onComplete, onBuild, hasItinerary }) {
@@ -58,7 +76,7 @@ export default function ItineraryView({ tasks, onComplete, onBuild, hasItinerary
                         </div>
                         <div className="slot-body">
                             <div className="slot-title">{task.title}</div>
-                            <div className="task-desc">{task.desc}</div>
+                            {task.desc && <ItineraryDesc desc={task.desc} />}
                             <div className="slot-meta">
                                 <span className={`badge badge-${task.priority.toLowerCase()}`}>
                                     {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}

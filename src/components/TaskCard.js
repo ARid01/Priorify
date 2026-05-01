@@ -1,5 +1,21 @@
+import { useRef, useState, useEffect } from "react";
+
 //Main use function
 export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
+    const descRef  = useRef(null);
+    const [descOverflows,  setDescOverflows]  = useState(false);
+
+    //Effect for overflow
+    useEffect(() => {
+        const check = () => {
+            if (descRef.current)
+                setDescOverflows(descRef.current.scrollWidth > descRef.current.clientWidth);
+        };
+        check();
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, [task.desc]);
+
     //Get reference to now as date/time
     const now = new Date();
     now.setHours(0, 0, 0, 0);
@@ -45,8 +61,13 @@ export default function TaskCard({ task, onComplete, onEdit, onDelete }) {
                 </div>
 
                 {task.desc && (
-                    <p className="task-desc">{task.desc}</p>
-                )}
+                        <p
+                            ref={descRef}
+                            className={`task-desc ${descOverflows ? "overflows" : ""}`}
+                        >
+                            {task.desc}
+                        </p>
+                    )}
         
                 <div className="task-meta">
                     {task.dueDate && (
