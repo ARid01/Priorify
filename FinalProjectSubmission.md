@@ -1,4 +1,4 @@
-#Final Project Submission
+# Final Project Submission
 ---
 Project Name: Priorify
 Member: Andrew Ridgely
@@ -6,15 +6,15 @@ Member: Andrew Ridgely
 Github Repo URL: [](https://github.com/ARid01/Priorify)
 Live Website URL: [](https://arid01.github.io/Priorify/)
 ---
-##Project Overview
-###Features:
+## Project Overview
+### Features:
   • Add, edit, delete tasks from list.
     o Allows users to create and manage tasks on the app.
     o Users can interact with buttons, text fields, and date pickers.
   • Build a daily itinerary to complete tasks
     o Feature creates a greedy-fill-by-urgency itinerary, filling up to eight hours.
       Allows users to complete the most important tasks first.
-    o Users can go to the Daily Itinerary tab, and press “Rebuild” to create an
+    o Users can go to the Daily Itinerary tab, and press "Rebuild" to create an
       itinerary.
     o Made these two separate views so the user can focus on each at different
       times.
